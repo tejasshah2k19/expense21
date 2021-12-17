@@ -7,5 +7,9 @@
 <title>Admin : Dashboard</title>
 </head>
 <body>
+
+<a href="AddCategory.jsp">Add Category</a> <br>
+<a href="AddSubCategory.jsp">Add SubCategory</a> <br>
+
 </body>
 </html>
