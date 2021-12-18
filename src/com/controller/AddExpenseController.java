@@ -7,6 +7,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.bean.ExpenseBean;
+import com.bean.UserBean;
+import com.dao.ExpenseDao;
 
 @WebServlet("/AddExpenseController")
 public class AddExpenseController extends HttpServlet {
@@ -17,7 +22,23 @@ public class AddExpenseController extends HttpServlet {
 		String title = request.getParameter("title");
 		int category = Integer.parseInt(request.getParameter("category"));
 		int subCategory = Integer.parseInt(request.getParameter("subCategory"));
-		float amount = Float.parseFloat(request.getParameter("amount"));
+		int amount = Integer.parseInt(request.getParameter("amount"));
+		String expenseDate = request.getParameter("date");
+		ExpenseBean expenseBean = new ExpenseBean();
+
+		HttpSession session = request.getSession();
+
+		UserBean user = (UserBean) session.getAttribute("user");
+		expenseBean.setAmount(amount);
+		expenseBean.setCategoryId(category);
+		expenseBean.setExpenseDate(expenseDate);
+		expenseBean.setSubCategoryId(subCategory);
+		expenseBean.setTitle(title);
+		expenseBean.setUserId(user.getUserId());
+
+		new ExpenseDao().addExpense(expenseBean);
+
+		response.sendRedirect("AddExpense.jsp");
 
 	}
 }

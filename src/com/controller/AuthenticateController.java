@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bean.UserBean;
 import com.dao.UserDao;
@@ -28,6 +29,10 @@ public class AuthenticateController extends HttpServlet {
 			rd = request.getRequestDispatcher("Login.jsp");
 		} else {
 			request.setAttribute("msg", "Welcome");
+			HttpSession session = request.getSession() ; 
+			
+			session.setAttribute("user",user);
+			
 			if (user.getRole() == 1) {
 				// user
 				rd = request.getRequestDispatcher("Home.jsp");

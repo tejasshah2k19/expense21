@@ -19,7 +19,7 @@
 	%>
 
 
-	<form method="post" action="AddExpenseController">
+	<form method="get" action="AddExpenseController">
 		Title : <input type="text" name="title" /> <br> Category : <select
 			name="category" id="category" onchange="getAllSubCategory()">
 			<option value="-1">Select Category</option>
@@ -30,7 +30,9 @@
 			<%
 				}
 			%>
-		</select> <br> SubCategory : <select id="subcategory"></select> <br>
+		</select> <br> SubCategory : <select id="subcategory" name="subCategory">
+			
+		</select> <br>
 		Amount :<input type="text" name="amount" /> <br> Date : <input
 			type="text" name="date" /><br> <input type="submit"
 			value="Add Expense" />
@@ -52,6 +54,15 @@
 				success : function(result) {
 					console.log(result);
 					console.log(result[0]);
+					let str = result ; 
+					str = str.substring(1,str.length-1);
+					let data = str.split(",");
+					for(i=0;i<data.length;i++){
+						let dd = data[i].split("=");
+						$("#subcategory").append("<option value="+dd[0]+">"+ dd[1] +"</option>")
+								
+					}
+					
 				}
 			});
 
