@@ -3,10 +3,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Home</title>
+<title>Add Category</title>
 </head>
 <body>
 
-<a href="AddExpense.jsp">Add Expense</a>
+<form action="AddCategoryController" method="post">
+
+	CategoryName : <input type="text" name="categoryName" /><br>
+	<input type="submit" value="Save Category"/> 
+	
+</form>
+
+
+
+
 </body>
 </html>

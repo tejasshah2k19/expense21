@@ -37,4 +37,17 @@ public class SubCategoryDao {
 
 		return subCategories;
 	}
+
+	public void addSubCategory(SubCategoryBean sb) {
+		try (Connection con = DbConnection.getConnection();
+				PreparedStatement pstmt = con.prepareStatement("insert into subcategory (subcategoryname,categoryid) values (?,?)");) {
+
+			pstmt.setString(1, sb.getSubCategoryName());
+			pstmt.setInt(2, sb.getCategoryId());
+			
+			pstmt.executeUpdate();// id fn em pass
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

@@ -12,7 +12,7 @@
 	<%
 		ArrayList<CategoryBean> categories = new CategoryDao().getAllCategories();
 	%>
-	<form action="Savesubcategory" method="post">
+	<form action="AddSubCategory" method="post">
 
 		SubCategoryName : <input type="text" name="subCategoryName" /><Br>
 

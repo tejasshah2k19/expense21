@@ -10,9 +10,8 @@ import com.util.DbConnection;
 
 public class CategoryDao {
 
+	public ArrayList<CategoryBean> getAllCategories() {
 
-	public ArrayList<CategoryBean> getAllCategories(){
-		
 		ArrayList<CategoryBean> categories = new ArrayList<>();
 
 		try (Connection con = DbConnection.getConnection();
@@ -25,7 +24,7 @@ public class CategoryDao {
 				CategoryBean cb = new CategoryBean();
 				cb.setCategoryId(rs.getInt("categoryid"));
 				cb.setCategoryName(rs.getString("categoryname"));
-				
+
 				categories.add(cb);
 			}
 
@@ -33,8 +32,18 @@ public class CategoryDao {
 			e.printStackTrace();
 		}
 
-		
-		
 		return categories;
 	}
+
+	public void addCategory(String categoryName) {
+		try (Connection con = DbConnection.getConnection();
+				PreparedStatement pstmt = con.prepareStatement("insert into category (categoryname) values (?)");) {
+
+			pstmt.setString(1, categoryName);
+			pstmt.executeUpdate();// id fn em pass
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 }

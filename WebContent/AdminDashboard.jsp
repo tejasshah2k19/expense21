@@ -8,8 +8,15 @@
 </head>
 <body>
 
-<a href="AddCategory.jsp">Add Category</a> <br>
-<a href="AddSubCategory.jsp">Add SubCategory</a> <br>
+	<a href="AddCategory.jsp">Add Category</a>
+	<br>
+	<a href="AddSubCategory.jsp">Add SubCategory</a>
+	<br>
+	<a href="ListUserController">All Users</a>
+	<br>
+	<a href="ListCategoriesController">List All Categories</a>
+	<br>
+
 
 </body>
 </html>
