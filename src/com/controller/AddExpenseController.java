@@ -34,7 +34,13 @@ public class AddExpenseController extends HttpServlet {
 		expenseBean.setExpenseDate(expenseDate);
 		expenseBean.setSubCategoryId(subCategory);
 		expenseBean.setTitle(title);
-		expenseBean.setUserId(user.getUserId());
+
+		if (user == null) {
+			expenseBean.setUserId(1);
+		} else {
+			expenseBean.setUserId(user.getUserId());
+
+		}
 
 		new ExpenseDao().addExpense(expenseBean);
 
